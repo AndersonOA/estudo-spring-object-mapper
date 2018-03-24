@@ -3,8 +3,10 @@ package br.com.makersweb.demo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author aaristides
@@ -20,11 +22,21 @@ public class Cliente implements Serializable {
     @NotNull
     private String nome;
 
+    @NotNull
+    @Email
+    private String email;
+
     @Embedded
     private Endereco endereco;
 
     @NotNull
     private Boolean ativo;
+
+    @NotNull
+    private LocalDateTime criado;
+
+    @NotNull
+    private LocalDateTime editado;
 
     public Long getCodigo() {
         return codigo;
@@ -42,6 +54,14 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -56,6 +76,22 @@ public class Cliente implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public LocalDateTime getCriado() {
+        return criado;
+    }
+
+    public void setCriado(LocalDateTime criado) {
+        this.criado = criado;
+    }
+
+    public LocalDateTime getEditado() {
+        return editado;
+    }
+
+    public void setEditado(LocalDateTime editado) {
+        this.editado = editado;
     }
 
     @JsonIgnore
