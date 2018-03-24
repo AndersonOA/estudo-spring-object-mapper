@@ -28,6 +28,9 @@ public class ClienteEditarDTO {
     @JsonIgnore
     private final LocalDateTime editado = LocalDateTime.now();
 
+    @NotNull
+    private Boolean ativo;
+
     public Long getCodigo() {
         return codigo;
     }
@@ -62,5 +65,13 @@ public class ClienteEditarDTO {
 
     public LocalDateTime getEditado() {
         return editado;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }

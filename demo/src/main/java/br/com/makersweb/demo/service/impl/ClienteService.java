@@ -31,12 +31,12 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente salvar(Cliente cliente) {
-        validaCliente(cliente);
         return clienteRepository.save(cliente);
     }
 
     @Override
     public Cliente editar(Long codigo, Cliente cliente) {
+        validaCliente(codigo);
         Cliente clienteSave = buscar(codigo);
         BeanUtils.copyProperties(cliente, clienteSave, "codigo");
 
@@ -64,8 +64,8 @@ public class ClienteService implements IClienteService {
         clienteRepository.save(cliente);
     }
 
-    private void validaCliente(Cliente cliente) {
-        Cliente clienteSave = buscar(cliente.getCodigo());
+    private void validaCliente(Long codigo) {
+        Cliente clienteSave = buscar(codigo);
         if (null == clienteSave || clienteSave.isInativo()) {
             throw new ClienteInexistenteOuInativaException();
         }

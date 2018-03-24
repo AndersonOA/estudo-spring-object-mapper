@@ -26,6 +26,9 @@ public class ClienteDTO {
     @JsonIgnore
     private final LocalDateTime editado = LocalDateTime.now();
 
+    @NotNull
+    private Boolean ativo;
+
     public String getNome() {
         return nome;
     }
@@ -56,5 +59,13 @@ public class ClienteDTO {
 
     public LocalDateTime getEditado() {
         return editado;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }
