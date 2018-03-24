@@ -1,5 +1,6 @@
 package br.com.makersweb.demo.model;
 
+import br.com.makersweb.demo.model.builder.ClienteBuilder;
 import br.com.makersweb.demo.model.dto.ClienteDTO;
 import br.com.makersweb.demo.model.dto.ClienteEditarDTO;
 import br.com.makersweb.demo.model.dto.EnderecoDTO;
@@ -44,5 +45,17 @@ public class ClienteUnitTest {
         assertEquals(clienteEditarDTO.getEmail(), cliente.getEmail());
         assertEquals(clienteDTO.getCriado(), cliente.getCriado());
         assertEquals(clienteEditarDTO.getEditado(), cliente.getEditado());
+    }
+
+    @Test
+    public void verificaMapeamentoClienteComBuilder() {
+        ClienteDTO clienteDTO = new ClienteBuilder()
+                                            .comCliente("Jõao da Silva", "joao@teste.com", true)
+                                            .comEndereco("Rua Pedro Sebastião", "Centro", "123", "Conselheiro Mairinck", "PR", "86480000")
+                                            .build();
+
+        Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
+
+        assertEquals(clienteDTO.getNome(), cliente.getNome());
     }
 }
