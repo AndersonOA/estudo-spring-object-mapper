@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static org.springframework.data.jpa.domain.Specification.where;
 
 /**
@@ -23,6 +25,11 @@ public class ClienteService implements IClienteService {
 
     @Autowired
     private IClienteRepository clienteRepository;
+
+    @Override
+    public List<Cliente> listar() {
+        return clienteRepository.findAll();
+    }
 
     @Override
     public Cliente buscar(Long codigo) {
